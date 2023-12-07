@@ -1,0 +1,60 @@
+---
+title: "CB_Seminar_10"
+author: "Elias Schwall"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r Exercise 1: Vector products}
+# a: Create a vector x comprised of 3 integers from 1 to 5 and a vector y that is twice the value of x. Calculate their sum
+x <- c(1,3,5)
+y <- 2*x
+sum_xy <- x+y
+
+# b: Calculate their inner product and their outer product
+inner_xy <- x %*% y
+outer_xy <- x %o% y
+```
+
+```{r Exercise 2: Matrices}
+# a: Construct a matrix A with 3 rows and 3 columns. 
+A <- matrix(c(46, 8, 39, 13, 25, 47, 46, 16, 45), nrow = 3, ncol = 3, byrow = TRUE)
+
+# Contain the inverse and transpose matrix of A 
+inverse_A <- solve(A)
+transposed_A <- t(A)
+
+# b: Write a function to calculate the trace of A 
+trace_A <- function(A){
+  trace_A <- sum(diag(A))
+  return(trace_A)
+}
+trace_A(A)
+
+# c: Construct a random matrix B with the same dimensions as A. Compute A + B and A - B
+B <- matrix(rnorm(9), nrow = 3, ncol = 3, byrow = TRUE)
+A_plus_B <- A+B
+A_minus_B <- A-B
+
+# d: Calculate the product of A and Vector v
+v <- c(19, 31, 35)
+A_times_v <- A %*% v
+A_multi_v <- A * v
+```
+
+```{r Exercise 3: Matrix-Matrix Products}
+# a: Compute A * B and B * A
+A_times_B <- A * B
+B_times_A <- B * A
+
+# b: Generate a 2 x 2 matrix C and anoter 2 x 1 matrix D.
+C <- matrix(c(16, 36, 19, 14), nrow = 2, ncol = 2, byrow = TRUE)
+D <- matrix(c(2, 35), nrow = 2, ncol = 1, byrow = TRUE)
+
+# if we have C * X = D, what is X?
+X <- solve(C) %*% D
+```
+
+```{r Exercise 4: Birds (Homework for Dec 13th)}
+````
+
