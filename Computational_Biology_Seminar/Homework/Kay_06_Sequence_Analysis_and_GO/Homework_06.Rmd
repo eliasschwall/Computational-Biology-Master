@@ -1,0 +1,80 @@
+---
+title: "Homework_06"
+author: "Elias Schwall"
+date: "`r Sys.Date()`"
+output: pdf_document
+bibliography: kayhomework.bib
+csl: harvard-educational-review.csl
+---
+
+## Task a) Basic sequence analysis of human protein RNF181
+
+### General function 
+The E3 ubiquitin-protein ligase operates by accepting ubiquitin from an E2 ubiquitin-conjugating enzyme in the form of a thioester, and then promptly transferring the ubiquitin directly to targeted substrates [@brophyRN181NovelUbiquitin2008]. Additionally, this ligase catalyzes the monoubiquitination of the 26S proteasome subunit PSMC2/RPT1 [@maedaE3UbiquitinLigase2009].
+
+### Domain 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{elm_database_rnf181.png}
+\caption{ELM database structural composition of RNF181}
+\end{figure}
+Znf_RING: RING-type zinc finger domains, such as the C3HC4-type and C3H2C3-type (RING-H2 finger), are specialized Zn-fingers involved in mediating protein-protein interactions and exhibit intrinsic E3 ubiquitin-protein ligase activity. They play a crucial role in diverse biological processes and can interact with E2 ubiquitin-conjugating enzymes. [@freemontRINGFinger1993]
+
+### Mofits
+In its composition, it contains a C3HC4 amino acid motif that enables the binding of two zinc cations. This occurs through seven cysteines and one histidine arranged in a non-consecutive manner. The two motifs that best align with the general function of the protein are LIG_UBA3_1 (E1 associated, facilitating thiolester formation and subsequent activation of CRLs, crucial for substrate ubiquitination and regulated protein degradation) at position 103-109 and MOD_SUMO_rev_2 (common PTM of nuclear protein, influences their functional status. Utilizing a typical E1-, E2-, and E3-ligase system, SUMO, belonging to the Ubiquitin-like protein family, modifies transcription factors, chromatin proteins, and other nuclear function-associated proteins) at position 70-77. \newline 
+Other ELM motifs that are described show incoherent functions in regards to E3 ligation, like LIG_Arc_Nlobe_1 (pos. 92-96) or LIG_Clathr_ClatBox_1 (pos. 80-84). 
+
+### Structure
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{Phosphosite.png}
+\caption{Phosphorylation sites of RNF181}
+\includegraphics[width=0.7\textwidth]{transmem.png}
+\caption{TMHMM analysis of RNF181}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{alpha.png}
+\caption{AlphaFold structure prediction of RNF181. AlphaFold predicts the structure of RNF181 with high confidence (darkblue pLDDT > 90, lightblue 90 > pLDDT > 70, yellow 70 > pLDDT > 50, orange  pLDDT < 50).}
+\end{figure}
+
+An examination using Phosphosite reveals the presence of the Ring-type Zinc finger domain and phosphorylation sites at S3, Y4, S13, T19, S70, Q71, Y127, K137, Y152, and T153 (see Figure 2). Additionally, the analysis conducted with TMHMM does not indicate the presence of any transmembrane domain (see Figure 3). 
+
+\newpage
+
+## Task b) GO enrichment analysis
+GO enrichment analysis of the full protein interactors revealed that RNF181 is highly involved in proteosomal protein catabolism, like proteasome core complex or peptidase complex (see Figure 5). The GO enrichment analysis of the interactors of the truncated protein revealed that the truncated protein is highly involved in mRNA metabolism, like negative regulation of mRNA splicing and regulation of mRNA catabolic processes (see Figure 6). Except for K48-linked ubiquitination of the protein, there is no association with a ubiquitin-dependent catabolic process. In terms of cellular component and molecular function, the enrichments with a high enrichment ratio and a significant false discovery rate (FDR) are particularly associated with endopeptidases for the full-length versions. In contrast, the truncated version does not interact with endopeptidases but rather associates with the spliceosomal complex.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{Full_protein.png}
+\caption{GO enrichment analysis of the full protein interactors}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{trunc.png}
+\caption{GO enrichment analysis of the full protein interactors}
+\end{figure}
+
+## Task c) C-terminal function 
+Based on the comparison of Gene Ontology (GO) enrichments, the C-terminus proves to be crucial for the catabolic process of the E3 ubiquitin ligase, as this process appears to be compromised in the absence of the last three residues. It is possible that the C-terminus plays a role in stabilizing the ring-type zinc finger domain, enabling it to fulfill its function effectively. With phosphorylation sites at both Tyr152 and Thre152, it is plausible that the C-terminus may also contribute to an activation function.
+Furthermore, the presence of proteasome subunit alpha exclusively in interactors with the full-length RNF181 suggests that the last residues may facilitate contact with the proteasome complex. This interaction is also exclusively observed in the cellular component of the full-length RNF181.
+
+## Task d) Evidence for the C-terminal conservation 
+For conservation analysis JackHMMER could be used. However the service is currently not available. Therefore the protein sequences of human RNF181 and its yeast orhtolog Ybr062c were aligned using blast (see Figure 7). The alignment shows that the C-terminal motif is conserved in both proteins (the last 5 residues are identical). This indicates that the C-terminal motif is important for the function of the protein.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\textwidth]{local_alignment.png}
+\caption{Alignment of human RNF181 and yeast Ybr062c}
+\end{figure}
+
+## Task e) Further evidence about the C-terminal motif and its putative function
+
+RNF181 protein is essential for its stabilizing function on estrogen receptor alpha (ERalpha). The capacity to stabilize ERalpha was demonstrated to require the intact structure of the entire RNF181 protein, not exclusively confined to the RING-type domain. This observation implies a critical contribution of the last three amino acids in supporting the functionality of the Ring-type zinc finger domain [@zhuUbiquitinLigaseRNF1812020].
+
+\newpage
+
+## References
