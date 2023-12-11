@@ -20,7 +20,7 @@ The E3 ubiquitin-protein ligase operates by accepting ubiquitin from an E2 ubiqu
 \end{figure}
 Znf_RING: RING-type zinc finger domains, such as the C3HC4-type and C3H2C3-type (RING-H2 finger), are specialized Zn-fingers involved in mediating protein-protein interactions and exhibit intrinsic E3 ubiquitin-protein ligase activity. They play a crucial role in diverse biological processes and can interact with E2 ubiquitin-conjugating enzymes. [@freemontRINGFinger1993]
 
-### Mofits
+### Motifs
 In its composition, it contains a C3HC4 amino acid motif that enables the binding of two zinc cations. This occurs through seven cysteines and one histidine arranged in a non-consecutive manner. The two motifs that best align with the general function of the protein are LIG_UBA3_1 (E1 associated, facilitating thiolester formation and subsequent activation of CRLs, crucial for substrate ubiquitination and regulated protein degradation) at position 103-109 and MOD_SUMO_rev_2 (common PTM of nuclear protein, influences their functional status. Utilizing a typical E1-, E2-, and E3-ligase system, SUMO, belonging to the Ubiquitin-like protein family, modifies transcription factors, chromatin proteins, and other nuclear function-associated proteins) at position 70-77. \newline 
 Other ELM motifs that are described show incoherent functions in regards to E3 ligation, like LIG_Arc_Nlobe_1 (pos. 92-96) or LIG_Clathr_ClatBox_1 (pos. 80-84). 
 
@@ -55,8 +55,10 @@ GO enrichment analysis of the full protein interactors revealed that RNF181 is h
 \begin{figure}[h!]
 \centering
 \includegraphics[width=1\textwidth]{trunc.png}
-\caption{GO enrichment analysis of the full protein interactors}
+\caption{GO enrichment analysis of the truncaded protein interactors}
 \end{figure}
+
+\newpage
 
 ## Task c) C-terminal function 
 Based on the comparison of Gene Ontology (GO) enrichments, the C-terminus proves to be crucial for the catabolic process of the E3 ubiquitin ligase, as this process appears to be compromised in the absence of the last three residues. It is possible that the C-terminus plays a role in stabilizing the ring-type zinc finger domain, enabling it to fulfill its function effectively. With phosphorylation sites at both Tyr152 and Thre152, it is plausible that the C-terminus may also contribute to an activation function.
