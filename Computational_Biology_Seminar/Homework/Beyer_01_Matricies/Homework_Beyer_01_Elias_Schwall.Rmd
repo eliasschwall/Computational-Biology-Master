@@ -1,0 +1,22 @@
+---
+title: "Homework_Beyer_01_Elias_Schwall"
+author: "Elias Schwall"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## Bird problem
+The bird problem can be described with the following linear equation system: $$b + 1 = (a-1)* 2$$ $$b - 1 = a +1$$ 
+By ordering the equations, the system looks like this: $$-2a + b = -3$$ $$-a + b = 2$$ 
+```{r Code, echo=T}
+# the coefficients of the linear equation system can be stored in a matrix A
+A <- matrix(c(-2, 1, -1, 1), nrow = 2, ncol = 2, byrow = TRUE)
+A
+# the right hand side of the equation system can be stored in a vector B
+B <- c(-3, 2)
+B
+# we know that A * X = B, so we can solve for X by multiplying both sides with the inverse of A
+X <- solve(A) %*% B
+X
+```
+Solution: On one table, there are 5 birds and on the other table, there are 7 birds. 
