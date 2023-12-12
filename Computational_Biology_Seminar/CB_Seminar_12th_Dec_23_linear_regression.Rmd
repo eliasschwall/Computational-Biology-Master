@@ -6,6 +6,53 @@ output: html_document
 ---
 
 ```{r Task 1: Data Visualization}
-# test
+# a) create a scatter plot for the response (dist) and predictor (speed) variables
+plot(cars$speed, cars$dist, main = "Speed vs. Stopping Distance", xlab = "Speed", ylab = "Stopping Distance", pch = 19, col = "blue")
+
+# b) create a boxplot for each variable speed and dist using the function boxplot()
+boxplot(cars$speed, main = "Speed", col = "blue")
+boxplot(cars$dist, main = "Stopping Distance", col = "red")
+
+# c) create a density plot for each variable speed and dist using the function density()
+plot(density(cars$speed), main = "Speed", col = "blue")
+plot(density(cars$dist), main = "Stopping Distance", col = "red")
+
+# d) calculate the correlation between the response (dist) and predictor (speed) variables
+cor(cars$speed, cars$dist)
 ```
+```{r Task 2: Fitting a Linear Model}
+# a) build the linear model using the function lm(formula, data) and find the beta coefficients b_0 and b_1. Save the output of the linear model in a variable
+lm_model <- lm(dist ~ speed, data = cars)
+coefficients(lm_model)
+
+# b) plot the distribution of the residuals using the function hist()
+hist(lm_model$residuals)
+
+# c) What is the coefficient of determination R^2? What is the relationship with the coefficient of correlation?
+summary(lm_model)$r.squared
+cor(cars$speed, cars$dist)^2
+
+# d) compute 0.95 and 0.99 intervals for the beta coefficients b_0 and b_1
+confint(lm_model, level = 0.95)
+confint(lm_model, level = 0.99)
+# Does the interval of b_1 contain the value 0? What does this mean?
+#Yes, it does. This means that the variable speed is not a significant predictor for the stopping distance.
+```
+```{r Task 3: Diagnostic Plots}
+# a) plot the fitted values of the linear model created in Task 2 against the residuals using the function plot()
+plot(lm_model$fitted.values, lm_model$residuals)
+
+# b) Plot the residuals against the predictor variable speed using the function plot()
+plot(cars$speed, lm_model$residuals)
+
+# c) Are the residuals normally distributed? Use the Sharpiro-Wilk test to check the normality of the residuals
+shapiro.test(lm_model$residuals)
+
+# d) create the normal probability plot of the standardized residuals 
+linearMod.stdres <- rstandard(lm_model)
+qqnorm(linearMod.stdres, main = "Normal Q-Q Plot")
+qqline(linearMod.stdres)
+```
+
+
 
