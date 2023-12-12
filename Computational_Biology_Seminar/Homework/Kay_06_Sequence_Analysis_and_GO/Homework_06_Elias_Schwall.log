@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.11)  11 DEC 2023 21:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.12.11)  12 DEC 2023 14:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -494,12 +494,12 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <Full_protein.png, id=74, 2529.45pt x 796.9775pt>
 File: Full_protein.png Graphic file (type png)
 <use Full_protein.png>
-Package pdftex.def Info: Full_protein.png  used on input line 193.
+Package pdftex.def Info: Full_protein.png  used on input line 199.
 (pdftex.def)             Requested size: 469.75496pt x 148.01009pt.
 <trunc.png, id=75, 991.45406pt x 348.17578pt>
 File: trunc.png Graphic file (type png)
 <use trunc.png>
-Package pdftex.def Info: trunc.png  used on input line 199.
+Package pdftex.def Info: trunc.png  used on input line 205.
 (pdftex.def)             Requested size: 469.75043pt x 164.9655pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -508,15 +508,15 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <local_alignment.png, id=85, 601.8736pt x 169.00641pt>
 File: local_alignment.png Graphic file (type png)
 <use local_alignment.png>
-Package pdftex.def Info: local_alignment.png  used on input line 235.
+Package pdftex.def Info: local_alignment.png  used on input line 241.
 (pdftex.def)             Requested size: 469.77176pt x 131.91212pt.
 [4 <./trunc.png> <./local_alignment.png>] [5]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 266.
+(Font)              <10> on input line 272.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 266.
+(Font)              <7> on input line 272.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 266.
+(Font)              <5> on input line 272.
 [6{/Users/elias/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}] (./Homework_06_Elias_Schwall.aux)
  ***********
 LaTeX2e <2023-11-01>
@@ -526,15 +526,15 @@ Package rerunfilecheck Info: File `Homework_06_Elias_Schwall.out' has not change
 (rerunfilecheck)             Checksum: 3705E60196B10874C9EA82873EB68144;2016.
  ) 
 Here is how much of TeX's memory you used:
- 12858 strings out of 476137
- 202722 string characters out of 5794388
+ 12860 strings out of 476137
+ 202742 string characters out of 5794388
  1934470 words of memory out of 5000000
  34585 multiletter control sequences out of 15000+600000
- 606731 words of font info for 123 fonts, out of 8000000 for 9000
+ 606814 words of font info for 124 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,6n,79p,1022b,453s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/elias/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/elias/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/elias/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/elias/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/elias/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/elias/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/elias/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb>
-Output written on Homework_06_Elias_Schwall.pdf (6 pages, 635131 bytes).
+Output written on Homework_06_Elias_Schwall.pdf (6 pages, 635680 bytes).
 PDF statistics:
  163 PDF objects out of 1000 (max. 8388607)
  125 compressed objects within 2 object streams
