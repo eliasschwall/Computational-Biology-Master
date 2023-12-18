@@ -1,0 +1,39 @@
+---
+title: "CB_Seminar_Beyer_Homework_02_Elias_Schwall"
+author: "Elias Schwall"
+date: "`r Sys.Date()`"
+output: 
+    html_document:
+        toc: true
+        theme: united
+---
+
+```{r echo=TRUE}
+# Setting up the linear models 
+sepal_length_model_with_predictor_sepal_width <- lm(Sepal.Length ~ Sepal.Width, data = iris)
+sepal_length_model_with_predictor_petal_length <- lm(Sepal.Length ~ Petal.Length, data = iris)
+sepal_length_model_with_predictor_petal_width <- lm(Sepal.Length ~ Petal.Width, data = iris)
+
+# Looking at the r squared values
+summary(sepal_length_model_with_predictor_sepal_width)$r.squared
+summary(sepal_length_model_with_predictor_petal_length)$r.squared
+summary(sepal_length_model_with_predictor_petal_width)$r.squared
+
+# Looking at the RSS of each model 
+sum(resid(sepal_length_model_with_predictor_sepal_width)^2)
+sum(resid(sepal_length_model_with_predictor_petal_length)^2)
+sum(resid(sepal_length_model_with_predictor_petal_width)^2)
+```
+When looking at the r squared values, we see that the r squared value of the model with the petal length predictor has the highest value of `r summary(sepal_length_model_with_predictor_petal_length)$r.squared`, while the model with the sepal width as a predictors has the lowest value of `r summary(sepal_length_model_with_predictor_sepal_width)$r.squared`. \newline
+Subsequently, the model with the petal length as a predictor has the lowest RSS: `r sum(resid(sepal_length_model_with_predictor_petal_length)^2)` and it therefore the best predictor of sepal length of the 3 variables, while the model with sepal width as a predictor performs the worst in predicting sepal length (`r sum(resid(sepal_length_model_with_predictor_sepal_width)^2)`). 
+
+```{r Plotting petal length predictor model, echo=TRUE}
+library(ggplot2)
+
+ggplot(iris, aes(x = Petal.Length, y = Sepal.Length)) +
+  geom_smooth() +
+  geom_point() +
+  ggtitle("Regression line for the petal length predictor model")
+
+```
+
