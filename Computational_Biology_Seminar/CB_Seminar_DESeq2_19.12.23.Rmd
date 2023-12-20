@@ -1,0 +1,76 @@
+---
+title: "CB_Seminar_DESeq2_19.12.23"
+author: "Elias Schwall"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+```{r Task 1: Creating a DESeqDataSet object}
+# a) Load the count matrix and annotation files
+load("Annotation.RData")
+load("Expression_Pancreas_Lung_1000genes.Rdata")
+
+# b) Plot the expression of ENSG00000157933.9 against the expression of ENSG00000157873.13
+library(ggplot2)
+ggplot(data = as.data.frame(Expression_Pancreas_Lung_1000genes), aes(ENSG00000157933.9, ENSG00000157873.13)) +
+    geom_point() + 
+    ggtitle("Expression of ENSG00000157933.9 against ENSG00000157873.13") +
+    theme_minimal()
+
+# c) Make all columns of the Annotation factors
+print(Annotation)
+print(is.factor(Annotation))
+
+# Apply the factor function.
+factor_anno <- factor(Annotation)
+
+print(factor_anno)
+print(is.factor(factor_anno))
+
+# d) Load DESeq2. Then, create a DESeqDataSet object calles dds from your data, controlling for the batch effects in your experimental design. Use the function DESeqDataSetFromMatrix
+library(DESeq2)
+
+dds <- DESeqDataSetFromMatrix(countData = t(Expression_Pancreas_Lung_1000genes),
+                              colData = Annotation,
+                              design = ~ tissue + DTHHRDY)
+```
+
+```{r Task 2: Normalization for sequencing depth}
+# a) Estimate the size factors for sequencing depth 
+sizeFactor <- sizeFactors(dds)[1:1000]
+total <- colSums(counts(dds))
+
+# b) Plot the size factors against the total reads per sample
+ggplot(data = as.data.frame(colData(dds)), aes(sizeFactor, total)) +
+    geom_point() +
+    ggtitle("Size factors against the total reads per sample") +
+    theme_minimal()
+
+# c) Make a matrix of log normalized counts (plus a pseudocount). Then, make a scatterplot of log normalized counts of any two samples against each other.
+dds.norm <- DESeq(dds)
+log_norm_counts <- log2(counts(dds.norm, normalized = TRUE) + 1)
+ggplot(data = as.data.frame(log_norm_counts), aes(x = log_norm_counts[,1], y = log_norm_counts[,2])) +
+    geom_point() +
+    ggtitle("Log normalized counts of any two samples against each other") +
+    theme_minimal()
+```
+
+```{r Task 3:  Stabilizing count variance}
+# a) Use varianceStabilizingTransformation on dds, with the argument blind=F. Make a scatterplot of the variance stabilized counts of the samples you used in 2c.
+ if (ncol(dds) > 30){
+    dds_vst <- varianceStabilizingTransformation(dds,blind=F)
+  } else {
+    dds_vst <- rlog(dds, blind=T)
+  }
+
+ggplot(data = as.data.frame(assay(dds_vst)), aes(x = assay(dds_vst)[,1], y = assay(dds_vst)[,2])) +
+    geom_point() +
+    ggtitle("Variance stabilized counts of the samples") +
+    theme_minimal()
+
+# b) Make a PCA plot for the variance stabilizing transformation object using the function plotPCA and the argument intgroup="tissue".
+AimedBulkRNASeq:
+
+```
+
