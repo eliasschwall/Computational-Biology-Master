@@ -1,0 +1,59 @@
+---
+title: "Bioconductor_Demo"
+author: "Elias Schwall"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+This is a quick demo of how someone can Bioconductor packages to quickly analyse RNA-seq data for example. 
+```{r}
+# Installing the packages. Since Bioconductor packages are not on CRAN, we need to install them differently. First, we need to install the BiocManager package, which is a package that allows us to install Bioconductor packages.
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+# Now we can install the packages we want to use.
+BiocManager::install("DESeq2") # DESeq2 is a package that allows us to do differential expression analysis
+BiocManager::install("airway") # airway is a package that contains RNA-seq data from a study which uses the RangedSummarizedExperiment object of read counts in genes for an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone.
+```
+
+Now that we have installed the packages, we can load them into our environment and use them like any other package.
+```{r}
+library(DESeq2)
+library(airway)
+
+# We can now look at the data that is contained in the airway package.
+# If we dont know where to start we can look at the vignette of the package like this browseVignettes("airway")
+data(airway)
+airway
+
+# We can see that the data is stored in a RangedSummarizedExperiment object. If we want to excess the count data, we can do it like this:
+count_data <- as.data.frame(assay(airway)) # this is the sequencing count data
+
+# We can also look at the metadata of the experiment like this:
+meta_data <- as.data.frame(colData(airway)) # this is the metadata of the experiment
+```
+
+
+
+It would be nice to know if genes are differentially expressed between the treatment and control group. We can do this with the DESeq2 package.
+```{r}
+# First we need to create a DESeqDataSet object. This object contains the count data and the metadata of the experiment.
+dds <- DESeqDataSetFromMatrix(countData = count_data,
+                              colData = meta_data,
+                              design = ~ dex)
+
+# To run the specific analysis we need to estimate the size factors and dispersions.
+dds <- DESeq(dds)
+
+# We can extract the results of the analysis like this:
+resultsNames(dds)
+res <- lfcShrink(dds, coef="dex_untrt_vs_trt", type="apeglm")
+
+
+# We can visualize differnentially expressed genes like this:
+plotMA(res, ylim=c(-2,2))
+
+# We can also visualize the counts of a specific gene like this:
+plotCounts(dds, gene=which.min(res$padj), intgroup="dex")
+
+```

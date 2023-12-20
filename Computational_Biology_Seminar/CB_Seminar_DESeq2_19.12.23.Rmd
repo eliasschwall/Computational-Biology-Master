@@ -70,7 +70,20 @@ ggplot(data = as.data.frame(assay(dds_vst)), aes(x = assay(dds_vst)[,1], y = ass
     theme_minimal()
 
 # b) Make a PCA plot for the variance stabilizing transformation object using the function plotPCA and the argument intgroup="tissue".
-AimedBulkRNASeq:
+pca <- principal_component_analysis_object_initialization(dds_vst,
+                                                   all_genes = T)
+
+PCA_viz(pca_input = t(pca),
+        pca_sample_table = Annotation,
+        ntop = 500,
+        xPC=1,
+        yPC=1,
+        color="tissue",
+        add_silhouette = T,
+        shape="NULL",
+        point_size=3,
+        title="PCA",
+        label = T)
 
 ```
 
