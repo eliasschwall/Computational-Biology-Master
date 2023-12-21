@@ -14,12 +14,15 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 # Now we can install the packages we want to use.
 BiocManager::install("DESeq2") # DESeq2 is a package that allows us to do differential expression analysis
 BiocManager::install("airway") # airway is a package that contains RNA-seq data from a study which uses the RangedSummarizedExperiment object of read counts in genes for an RNA-Seq experiment on four human airway smooth muscle cell lines treated with dexamethasone.
+# for statistical testing we also need to install the apeglm package
+BiocManager::install("apeglm")
 ```
 
 Now that we have installed the packages, we can load them into our environment and use them like any other package.
 ```{r}
 library(DESeq2)
 library(airway)
+library(apeglm)
 
 # We can now look at the data that is contained in the airway package.
 # If we dont know where to start we can look at the vignette of the package like this browseVignettes("airway")
