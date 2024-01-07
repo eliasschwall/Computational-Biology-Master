@@ -16,32 +16,32 @@ Annotation <- as.data.frame(Annotation)
 
 ##### a) Model tissue with each of the 1000 genes using generalized linear model. For each model retrieve p-value of the coefficient that shows effect of gene on tissue, using coefficients(summary()). How many genes are predictive of tissue, at a significance threshold of 0.05?
 ```{r warning=FALSE}
-# Adding tissue column to Expression_Pancreas_Lung_1000genes
-Expression_Pancreas_Lung_1000genes$tissue <- Annotation$tissue
-
 # Creating empty vector for p-values
 p_values <- c()
 
 # Creating a model for each gene
 for (i in 1:1000){
   model <- glm(tissue ~ Expression_Pancreas_Lung_1000genes[,i], 
-               data = Expression_Pancreas_Lung_1000genes, 
+               data = Annotation, 
                family = "binomial")
   
- p_values[i] <- summary(model)$coefficients[, "Pr(>|z|)"]
+ p_values[i] <- summary(model)$coefficients[2,4]
 }
 
 # How many genes are predictive of tissue, at a significance threshold of 0.05?
-p_values <- dplyr::filter(as.data.frame(p_values), p_values < 0.05)
+p_values_sig <- dplyr::filter(as.data.frame(p_values), p_values < 0.05)
 ```
-There are `r nrow(p_values)` genes predictive of tissue at a significance threshold of 0.05.
+There are `r nrow(p_values_sig)` genes predictive of tissue at a significance threshold of 0.05.
 
-##### b) Apply multiple hypothesis testing to the p-values you obtained. See?p.adjust. How many genes are now predictive of tissues at a significance threshold of 0.05?
+<br>
+<br>
+
+##### b) Apply multiple hypothesis testing to the p-values you obtained. See ?p.adjust. How many genes are now predictive of tissues at a significance threshold of 0.05?
 ```{r}
 p_values <- unlist(p_values)
 p_values <- as.numeric(p_values)
 # Applying multiple hypothesis testing to the p-values
-p_values_adj <- p.adjust(p_values, method = "bonferroni")
+p_values_adj <- p.adjust(p_values, method = "BH")
 p_values_adj <- dplyr::filter(as.data.frame(p_values_adj), p_values_adj < 0.05)
 ```
 
