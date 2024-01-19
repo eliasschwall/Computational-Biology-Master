@@ -1,5 +1,5 @@
 ---
-title: "CB_Seminar_Homework_Beyer_03_Elias_Schwall"
+title: "CB_Seminar_Homework_Beyer_03"
 author: "Elias Schwall"
 date: "`r Sys.Date()`"
 output: html_document

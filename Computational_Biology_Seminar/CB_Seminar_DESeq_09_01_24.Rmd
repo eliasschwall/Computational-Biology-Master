@@ -1,0 +1,39 @@
+---
+title: "CB_Seminar_DESeq"
+author: "Elias Schwall"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+[See tutorial](https://introtogenomics.readthedocs.io/en/latest/2021.11.11.DeseqTutorial.html)
+```{r libaries, message=FALSE, warning=FALSE}
+library("pasilla")
+library("tidyverse")
+library("DESeq2")
+library("pheatmap")
+library("RColorBrewer")
+library("apeglm")
+library("DEGreport")
+```
+
+```{r data import, message=FALSE, warning=FALSE}
+library("pasilla")
+pasCts <- system.file("extdata",
+                      "pasilla_gene_counts.tsv",
+                      package="pasilla", mustWork=TRUE)
+pasAnno <- system.file("extdata",
+                       "pasilla_sample_annotation.csv",
+                       package="pasilla", mustWork=TRUE)
+cts <- as.matrix(read.csv(pasCts,sep="\t",row.names="gene_id"))
+coldata <- read.csv(pasAnno, row.names=1)
+coldata <- coldata[,c("condition","type")]
+coldata$condition <- factor(coldata$condition)
+coldata$type <- factor(coldata$type)
+
+# gene raw counts
+as_tibble(cts)
+
+# gene raw counts
+as_tibble(cts)
+```
+
