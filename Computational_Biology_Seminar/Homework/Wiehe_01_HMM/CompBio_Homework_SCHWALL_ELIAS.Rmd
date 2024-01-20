@@ -1,0 +1,100 @@
+---
+title: "CompBio Homework SCHWALL ELIAS"
+author: "Elias Schwall"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+# Task 1 Pizza and Markov chains
+
+## a) Give the transition matrix to this process
+```{r}
+transition <- matrix(c(0.4,0.3,0.3,
+                       0.0,0.1,0.9,
+                       0.1,0.4,0.5), nrow = 3, ncol = 3, byrow = TRUE)
+
+names <- c("Aurora Pizza", "Pizza Boy", "Pizza Company")
+rownames(transition) <- names
+colnames(transition) <- names
+print(transition)
+```
+## b) Calculate the costumer distribution after 1,2,10 and 20 month
+```{r}
+time_frames <- c(1,2,10,20)
+
+for (i in time_frames){
+    customer_distribution <- c(200,300,100)
+    for (j in 1:i) {
+        customer_distribution <- customer_distribution %*% transition
+    }
+    cat("Customer distrinbution after", i, "months",customer_distribution,"\n", sep = " ")
+}
+```
+## c) Interpret the result, using the term ’stationary distribution’
+After 10 months we can see that the customer distribution is basically not changing anymore (rounded). This is called the stationary distribution. The stationary distribution is the long term distribution of the customer distribution. This implies that following a specific duration, the customer distribution for each pizza store will reach a stable state, and the market shares will remain relatively consistent over time. In principle the stantionary distribution is achieved earlier than after 10 months, however in the observed time frames we see behavior after 10 months, when comparing it to 20.
+
+# Task 2 Asymmetric random walk - an urn model 
+## a) Define the procedure draw and replace in the R-script, which updates the balls in the urn. For weighted sampling, use sample with the option prob= .... The vector can be defined with the weights 1 and s (1 where balls=0 and s where balls=1)
+```{r}
+#Urn-model#
+N <- 100 #number of balls
+s <- 2 #weight of white balls
+
+balls <- rep(0,N)
+balls[1] <- 1 #start with one white ball
+
+########################################
+# Define the function draw and replace #
+########################################
+
+draw_and_replace <- function(balls){
+  # Random deletion
+  balls <- balls[-sample(length(balls),1)]
+  # Weighted duplication
+  prob_weights <- balls
+  prob_weights[prob_weights == 1] <- s
+  prob_weights[prob_weights == 0] <- 1
+  selected_ball <- sample(balls, 1, prob = prob_weights)
+  balls <- c(balls, selected_ball)
+  return(balls)
+}
+
+### Try out ###
+balls <- draw_and_replace(balls)  
+print(balls)
+```
+## b) Describe the purpose of the function draw trajectory. Choose at least 3 different parameter combinations (varying s, N, run time etc.) and attach the plots to the pdf. Give a short interpretation of the effects of the parameters.
+```{r}
+draw_trajectory <- function(repl=20, run_time=1e3, s=2, N=100){
+  trajectory <- rep(0,run_time)
+  plot(0,0,xlim=c(0,run_time),ylim=c(0,N),xlab="time",ylab="number",main=paste0("s= ",s,", N=",N,", repl= ",repl,", run_time=",run_time,sep=""))
+  for (it in 1:repl) {
+    balls <- rep(0,N)
+    balls[1] <- 1
+    
+    for (tm in 1:run_time) {
+      trajectory[tm] <- sum(balls)
+      balls <- draw_and_replace(balls)
+    }
+    
+    points(1:run_time,trajectory,type="l")
+  }
+}
+
+draw_trajectory(repl=20, run_time=1e3, s=100, N=100)
+draw_trajectory(repl=20, run_time=1e3, s=69, N=100)
+draw_trajectory(repl=20, run_time=1e3, s=420, N=100)
+```
+
+
+## c) Describe the purpose of the function get trans prob. Choose at least 10 different parameter combinations (varying x0, s, N). Give a short interpretation of your result.
+
+## d) Bonus: How can this process be applied to population genetics and evolution?
+
+# Task 3 CpG islands and HMMs
+## a) Compare the entries of C−G− and C+G+ and interprete the result.
+
+## b) How does the emission matrix look like? What are the observables and the emission
+probabilities from the hidden states? (1P)
+
+## c) Use the transition matrix to calculate the probability, that the following sequence was sampled from a CpG-island and the probability, that it was sampled from a non-island region. TGACGACGAA. Compare the probabilities.
