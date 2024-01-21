@@ -47,7 +47,7 @@ balls[1] <- 1 #start with one white ball
 # Define the function draw and replace #
 ########################################
 
-draw_and_replace <- function(balls){
+draw_and_replace <- function(balls, s=2){
   # Random deletion
   balls <- balls[-sample(length(balls),1)]
   # Weighted duplication
@@ -60,12 +60,15 @@ draw_and_replace <- function(balls){
 }
 
 ### Try out ###
-balls <- draw_and_replace(balls)  
+balls <- draw_and_replace(balls, s=2)  
 print(balls)
 ```
 ## b) Describe the purpose of the function draw trajectory. Choose at least 3 different parameter combinations (varying s, N, run time etc.) and attach the plots to the pdf. Give a short interpretation of the effects of the parameters.
+
+The draw_trajectory function is used to simulate the urn model and plot the trajectory of the number of balls in the urn over time. The function takes the following parameters: repl is the number of simulations to be run, run_time is the number of time steps to be simulated, s is the weight of the white balls, and N is the number of balls in the urn. The function is used to investigate the effect of the parameters on the urn model. The following plots show the effect of varying s, N, and repl on the urn model.
 ```{r}
 draw_trajectory <- function(repl=20, run_time=1e3, s=2, N=100){
+  s <- s
   trajectory <- rep(0,run_time)
   plot(0,0,xlim=c(0,run_time),ylim=c(0,N),xlab="time",ylab="number",main=paste0("s= ",s,", N=",N,", repl= ",repl,", run_time=",run_time,sep=""))
   for (it in 1:repl) {
@@ -74,17 +77,52 @@ draw_trajectory <- function(repl=20, run_time=1e3, s=2, N=100){
     
     for (tm in 1:run_time) {
       trajectory[tm] <- sum(balls)
-      balls <- draw_and_replace(balls)
+      balls <- draw_and_replace(balls, s)
     }
     
     points(1:run_time,trajectory,type="l")
   }
 }
-
-draw_trajectory(repl=20, run_time=1e3, s=100, N=100)
-draw_trajectory(repl=20, run_time=1e3, s=69, N=100)
-draw_trajectory(repl=20, run_time=1e3, s=420, N=100)
 ```
+
+### Plots for varying s
+```{r}
+# Changing s 
+draw_trajectory(repl=20, run_time=1e3, s=1, N=100)
+draw_trajectory(repl=20, run_time=1e3, s=5, N=100)
+draw_trajectory(repl=20, run_time=1e3, s=10, N=100)
+```
+When changing the weight of the white balls, we can see that the number of white balls in the urn increases faster when the weight is higher. This is because the probability of drawing a white ball is higher when the weight is higher. 
+\newpage
+
+### Plots for varying repl
+```{r}
+# Changing repl
+draw_trajectory(repl=20, run_time=1e3, s=2, N=100)
+draw_trajectory(repl=30, run_time=1e3, s=2, N=100)
+draw_trajectory(repl=50, run_time=1e3, s=2, N=100)
+```
+When changing the number of simulations, we can see that there are more trajectories. This is because the number of simulations is the number of times the urn model is simulated. Therefore, it more likely that some trajectories will approach the maximum number of white balls in the urn by chance.
+\newpage
+
+### Plots for varying N
+```{r}
+# Changing N
+draw_trajectory(repl=20, run_time=1e3, s=2, N=100)
+draw_trajectory(repl=20, run_time=1e3, s=2, N=500)
+draw_trajectory(repl=20, run_time=1e3, s=2, N=1000)
+```
+When changing the number of balls in the urn, we can see that it is more likely to pick a black ball, because the ratio of white to black balls changes (we still start only with one white ball). Therefore, it is more likely that the trajectory will approach the minimum number of white balls (0) in the urn by chance. 
+\newpage
+
+### Plots for varying run_time
+```{r}
+# Changing run_time
+draw_trajectory(repl=20, run_time=1e2, s=2, N=100)
+draw_trajectory(repl=20, run_time=1e3, s=2, N=100)
+draw_trajectory(repl=20, run_time=1e4, s=2, N=100)
+```
+When changing the number of time steps, we can see that reaching a minimum or maximum number of white balls in 
 
 
 ## c) Describe the purpose of the function get trans prob. Choose at least 10 different parameter combinations (varying x0, s, N). Give a short interpretation of your result.
