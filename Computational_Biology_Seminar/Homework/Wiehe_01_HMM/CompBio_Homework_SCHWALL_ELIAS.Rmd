@@ -189,7 +189,10 @@ The observables are the A, C, T, G bases without the island status. The emission
 
 ## c) Use the transition matrix to calculate the probability, that the following sequence was sampled from a CpG-island and the probability, that it was sampled from a non-island region. TGACGACGAA. Compare the probabilities.
 ```{r}
+prob_island <- 0.2910 * 0.2557 * 0.1892 *  0.2191 * 0.2557 * 0.1892 * 0.2191 * 0.2557 * 0.3190
+prob_non_island <- 0.2158 * 0.3654 * 0.1629 *  0.0211 * 0.3654 *  0.1629 * 0.0211 * 0.3654 * 0.3921
 
+prob_island > prob_non_island
 ```
 The probability that the sequence is derived 
 
