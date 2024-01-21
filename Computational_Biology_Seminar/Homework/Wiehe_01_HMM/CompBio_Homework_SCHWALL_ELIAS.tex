@@ -1,0 +1,576 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={CompBio Homework SCHWALL ELIAS},
+  pdfauthor={Elias Schwall},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{CompBio Homework SCHWALL ELIAS}
+\author{Elias Schwall}
+\date{2024-01-21}
+
+\begin{document}
+\maketitle
+
+\hypertarget{task-1-pizza-and-markov-chains}{%
+\section{Task 1 Pizza and Markov
+chains}\label{task-1-pizza-and-markov-chains}}
+
+\hypertarget{a-give-the-transition-matrix-to-this-process}{%
+\subsection{a) Give the transition matrix to this
+process}\label{a-give-the-transition-matrix-to-this-process}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{transition }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}
+                       \FloatTok{0.0}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.9}\NormalTok{,}
+                       \FloatTok{0.1}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.5}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Aurora Pizza"}\NormalTok{, }\StringTok{"Pizza Boy"}\NormalTok{, }\StringTok{"Pizza Company"}\NormalTok{)}
+\FunctionTok{rownames}\NormalTok{(transition) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\FunctionTok{colnames}\NormalTok{(transition) }\OtherTok{\textless{}{-}}\NormalTok{ names}
+\FunctionTok{print}\NormalTok{(transition)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               Aurora Pizza Pizza Boy Pizza Company
+## Aurora Pizza           0.4       0.3           0.3
+## Pizza Boy              0.0       0.1           0.9
+## Pizza Company          0.1       0.4           0.5
+\end{verbatim}
+
+\hypertarget{b-calculate-the-costumer-distribution-after-1210-and-20-month}{%
+\subsection{b) Calculate the costumer distribution after 1,2,10 and 20
+month}\label{b-calculate-the-costumer-distribution-after-1210-and-20-month}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{time\_frames }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ time\_frames)\{}
+\NormalTok{    customer\_distribution }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{200}\NormalTok{,}\DecValTok{300}\NormalTok{,}\DecValTok{100}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{i) \{}
+\NormalTok{        customer\_distribution }\OtherTok{\textless{}{-}}\NormalTok{ customer\_distribution }\SpecialCharTok{\%*\%}\NormalTok{ transition}
+\NormalTok{    \}}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{"Customer distrinbution after"}\NormalTok{, i, }\StringTok{"months"}\NormalTok{,customer\_distribution,}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, }\AttributeTok{sep =} \StringTok{" "}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Customer distrinbution after 1 months 90 130 380 
+## Customer distrinbution after 2 months 74 192 334 
+## Customer distrinbution after 10 months 60.0014 180.0012 359.9974 
+## Customer distrinbution after 20 months 60 180 360
+\end{verbatim}
+
+\hypertarget{c-interpret-the-result-using-the-term-stationary-distribution}{%
+\subsection{c) Interpret the result, using the term 'stationary
+distribution'}\label{c-interpret-the-result-using-the-term-stationary-distribution}}
+
+After 10 months we can see that the customer distribution is basically
+not changing anymore (rounded). This is called the stationary
+distribution. The stationary distribution is the long term distribution
+of the customer distribution. This implies that following a specific
+duration, the customer distribution for each pizza store will reach a
+stable state, and the market shares will remain relatively consistent
+over time. In principle the stantionary distribution is achieved earlier
+than after 10 months, however in the observed time frames we see
+behavior after 10 months, when comparing it to 20.
+
+\hypertarget{task-2-asymmetric-random-walk---an-urn-model}{%
+\section{Task 2 Asymmetric random walk - an urn
+model}\label{task-2-asymmetric-random-walk---an-urn-model}}
+
+\hypertarget{a-define-the-procedure-draw-and-replace-in-the-r-script-which-updates-the-balls-in-the-urn.-for-weighted-sampling-use-sample-with-the-option-prob-.-the-vector-can-be-defined-with-the-weights-1-and-s-1-where-balls0-and-s-where-balls1}{%
+\subsection{a) Define the procedure draw and replace in the R-script,
+which updates the balls in the urn. For weighted sampling, use sample
+with the option prob= \ldots. The vector can be defined with the weights
+1 and s (1 where balls=0 and s where
+balls=1)}\label{a-define-the-procedure-draw-and-replace-in-the-r-script-which-updates-the-balls-in-the-urn.-for-weighted-sampling-use-sample-with-the-option-prob-.-the-vector-can-be-defined-with-the-weights-1-and-s-1-where-balls0-and-s-where-balls1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Urn{-}model\#}
+\NormalTok{N }\OtherTok{\textless{}{-}} \DecValTok{100} \CommentTok{\#number of balls}
+\NormalTok{s }\OtherTok{\textless{}{-}} \DecValTok{2} \CommentTok{\#weight of white balls}
+
+\NormalTok{balls }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,N)}
+\NormalTok{balls[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{1} \CommentTok{\#start with one white ball}
+
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# Define the function draw and replace \#}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\NormalTok{draw\_and\_replace }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(balls, }\AttributeTok{s=}\DecValTok{2}\NormalTok{)\{}
+  \CommentTok{\# Random deletion}
+\NormalTok{  balls }\OtherTok{\textless{}{-}}\NormalTok{ balls[}\SpecialCharTok{{-}}\FunctionTok{sample}\NormalTok{(}\FunctionTok{length}\NormalTok{(balls),}\DecValTok{1}\NormalTok{)]}
+  \CommentTok{\# Weighted duplication}
+\NormalTok{  prob\_weights }\OtherTok{\textless{}{-}}\NormalTok{ balls}
+\NormalTok{  prob\_weights[prob\_weights }\SpecialCharTok{==} \DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ s}
+\NormalTok{  prob\_weights[prob\_weights }\SpecialCharTok{==} \DecValTok{0}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{  selected\_ball }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(balls, }\DecValTok{1}\NormalTok{, }\AttributeTok{prob =}\NormalTok{ prob\_weights)}
+\NormalTok{  balls }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(balls, selected\_ball)}
+  \FunctionTok{return}\NormalTok{(balls)}
+\NormalTok{\}}
+
+\DocumentationTok{\#\#\# Try out }\AlertTok{\#\#\#}
+\NormalTok{balls }\OtherTok{\textless{}{-}} \FunctionTok{draw\_and\_replace}\NormalTok{(balls, }\AttributeTok{s=}\DecValTok{2}\NormalTok{)  }
+\FunctionTok{print}\NormalTok{(balls)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+##  [38] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+##  [75] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+\end{verbatim}
+
+\hypertarget{b-describe-the-purpose-of-the-function-draw-trajectory.-choose-at-least-3-different-parameter-combinations-varying-s-n-run-time-etc.-and-attach-the-plots-to-the-pdf.-give-a-short-interpretation-of-the-effects-of-the-parameters.}{%
+\subsection{b) Describe the purpose of the function draw trajectory.
+Choose at least 3 different parameter combinations (varying s, N, run
+time etc.) and attach the plots to the pdf. Give a short interpretation
+of the effects of the
+parameters.}\label{b-describe-the-purpose-of-the-function-draw-trajectory.-choose-at-least-3-different-parameter-combinations-varying-s-n-run-time-etc.-and-attach-the-plots-to-the-pdf.-give-a-short-interpretation-of-the-effects-of-the-parameters.}}
+
+The draw\_trajectory function is used to simulate the urn model and plot
+the trajectory of the number of balls in the urn over time. The function
+takes the following parameters: repl is the number of simulations to be
+run, run\_time is the number of time steps to be simulated, s is the
+weight of the white balls, and N is the number of balls in the urn. The
+function is used to investigate the effect of the parameters on the urn
+model. The following plots show the effect of varying s, N, and repl on
+the urn model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{draw\_trajectory }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{2}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  s }\OtherTok{\textless{}{-}}\NormalTok{ s}
+\NormalTok{  trajectory }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,run\_time)}
+  \FunctionTok{plot}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\AttributeTok{xlim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,run\_time),}\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,N),}\AttributeTok{xlab=}\StringTok{"time"}\NormalTok{,}\AttributeTok{ylab=}\StringTok{"number"}\NormalTok{,}\AttributeTok{main=}\FunctionTok{paste0}\NormalTok{(}\StringTok{"s= "}\NormalTok{,s,}\StringTok{", N="}\NormalTok{,N,}\StringTok{", repl= "}\NormalTok{,repl,}\StringTok{", run\_time="}\NormalTok{,run\_time,}\AttributeTok{sep=}\StringTok{""}\NormalTok{))}
+  \ControlFlowTok{for}\NormalTok{ (it }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{repl) \{}
+\NormalTok{    balls }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,N)}
+\NormalTok{    balls[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{1}
+    
+    \ControlFlowTok{for}\NormalTok{ (tm }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{run\_time) \{}
+\NormalTok{      trajectory[tm] }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(balls)}
+\NormalTok{      balls }\OtherTok{\textless{}{-}} \FunctionTok{draw\_and\_replace}\NormalTok{(balls, s)}
+\NormalTok{    \}}
+    
+    \FunctionTok{points}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{run\_time,trajectory,}\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{plots-for-varying-s}{%
+\subsubsection{Plots for varying s}\label{plots-for-varying-s}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Changing s }
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{1}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{5}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-5-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{10}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-5-3.pdf}
+When changing the weight of the white balls, we can see that the number
+of white balls in the urn increases faster when the weight is higher.
+This is because the probability of drawing a white ball is higher when
+the weight is higher. \newpage
+
+\hypertarget{plots-for-varying-repl}{%
+\subsubsection{Plots for varying repl}\label{plots-for-varying-repl}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Changing repl}
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{2}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{30}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{2}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{50}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{2}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-6-3.pdf}
+When changing the number of simulations, we can see that there are more
+trajectories. This is because the number of simulations is the number of
+times the urn model is simulated. Therefore, it more likely that some
+trajectories will approach the maximum number of white balls in the urn
+by chance. \newpage
+
+\hypertarget{plots-for-varying-n}{%
+\subsubsection{Plots for varying N}\label{plots-for-varying-n}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Changing N}
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{2}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{2}\NormalTok{, }\AttributeTok{N=}\DecValTok{500}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-7-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{2}\NormalTok{, }\AttributeTok{N=}\DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-7-3.pdf}
+When changing the number of balls in the urn, we can see that it is more
+likely to pick a black ball, because the ratio of white to black balls
+changes (we still start only with one white ball). Therefore, it is more
+likely that the trajectory will approach the minimum number of white
+balls (0) in the urn by chance. \newpage
+
+\hypertarget{plots-for-varying-run_time}{%
+\subsubsection{Plots for varying
+run\_time}\label{plots-for-varying-run_time}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Changing run\_time}
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e2}\NormalTok{, }\AttributeTok{s=}\DecValTok{2}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e3}\NormalTok{, }\AttributeTok{s=}\DecValTok{2}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-8-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{draw\_trajectory}\NormalTok{(}\AttributeTok{repl=}\DecValTok{20}\NormalTok{, }\AttributeTok{run\_time=}\FloatTok{1e4}\NormalTok{, }\AttributeTok{s=}\DecValTok{2}\NormalTok{, }\AttributeTok{N=}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-8-3.pdf}
+When changing the number of time steps, we can see that reaching a
+minimum or maximum number of white balls in the urn becomes less likely,
+due to less drawing and replacing steps.
+
+\hypertarget{c-describe-the-purpose-of-the-function-get-trans-prob.-choose-at-least-10-different-parameter-combinations-varying-x0-s-n.-give-a-short-interpretation-of-your-result.}{%
+\subsection{c) Describe the purpose of the function get trans prob.
+Choose at least 10 different parameter combinations (varying x0, s, N).
+Give a short interpretation of your
+result.}\label{c-describe-the-purpose-of-the-function-get-trans-prob.-choose-at-least-10-different-parameter-combinations-varying-x0-s-n.-give-a-short-interpretation-of-your-result.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{get\_trans\_prob }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x0,N,s,}\AttributeTok{it=}\DecValTok{1000}\NormalTok{)\{}
+\NormalTok{  x\_out }\OtherTok{\textless{}{-}} \FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,it)}
+  \ControlFlowTok{for}\NormalTok{(tm }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{it)\{}
+\NormalTok{    x }\OtherTok{\textless{}{-}}\NormalTok{ x0}
+\NormalTok{    y }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DecValTok{1}\NormalTok{,}\AttributeTok{prob=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{x}\SpecialCharTok{/}\NormalTok{N,x}\SpecialCharTok{/}\NormalTok{N))}
+    \ControlFlowTok{if}\NormalTok{(y}\SpecialCharTok{==}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{      x }\OtherTok{\textless{}{-}}\NormalTok{ x}\DecValTok{{-}1}
+\NormalTok{    \}}
+    
+\NormalTok{    z }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\DecValTok{1}\NormalTok{,}\AttributeTok{prob=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{(s}\SpecialCharTok{*}\NormalTok{x)}\SpecialCharTok{/}\NormalTok{(s}\SpecialCharTok{*}\NormalTok{x}\SpecialCharTok{+}\NormalTok{(N}\DecValTok{{-}1}\NormalTok{)), (s}\SpecialCharTok{*}\NormalTok{x)}\SpecialCharTok{/}\NormalTok{(s}\SpecialCharTok{*}\NormalTok{x}\SpecialCharTok{+}\NormalTok{(N}\DecValTok{{-}1}\NormalTok{)) ))}
+    \ControlFlowTok{if}\NormalTok{(z}\SpecialCharTok{==}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{      x }\OtherTok{\textless{}{-}}\NormalTok{ x}\SpecialCharTok{+}\DecValTok{1}
+\NormalTok{    \}}
+\NormalTok{    x\_out[tm] }\OtherTok{\textless{}{-}}\NormalTok{ x}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{table}\NormalTok{(x\_out)}\SpecialCharTok{/}\NormalTok{it)}
+\NormalTok{\}}
+
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## x_out
+##    49    50    51 
+## 0.042 0.475 0.483
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Changing x0 }
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{40}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## x_out
+##    39    40    41 
+## 0.049 0.431 0.520
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{60}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## x_out
+##    59    60    61 
+## 0.052 0.590 0.358
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{80}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## x_out
+##    79    80    81 
+## 0.050 0.792 0.158
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Changing N}
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{200}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## x_out
+##    49    50    51 
+## 0.057 0.344 0.599
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{300}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## x_out
+##    49    50    51 
+## 0.036 0.324 0.640
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{400}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## x_out
+##    49    50    51 
+## 0.049 0.328 0.623
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Changing s}
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{30}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## x_out
+##    49    50    51 
+## 0.032 0.494 0.474
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{40}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## x_out
+##    49    50    51 
+## 0.027 0.506 0.467
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## x_out
+##    49    50    51 
+## 0.019 0.495 0.486
+\end{verbatim}
+
+The primary objective of the get\_trans\_prob function is to simulate a
+random walk process characterized by two sequential steps, both
+influenced by probabilistic transitions.
+
+\hypertarget{d-bonus-how-can-this-process-be-applied-to-population-genetics-and-evolution}{%
+\subsection{d) Bonus: How can this process be applied to population
+genetics and
+evolution?}\label{d-bonus-how-can-this-process-be-applied-to-population-genetics-and-evolution}}
+
+\hypertarget{task-3-cpg-islands-and-hmms}{%
+\section{Task 3 CpG islands and
+HMMs}\label{task-3-cpg-islands-and-hmms}}
+
+\hypertarget{a-compare-the-entries-of-cg-and-cg-and-interprete-the-result.}{%
+\subsection{a) Compare the entries of C−G− and C+G+ and interprete the
+result.}\label{a-compare-the-entries-of-cg-and-cg-and-interprete-the-result.}}
+
+\hypertarget{b-how-does-the-emission-matrix-look-like-what-are-the-observables-and-the-emission}{%
+\subsection{b) How does the emission matrix look like? What are the
+observables and the
+emission}\label{b-how-does-the-emission-matrix-look-like-what-are-the-observables-and-the-emission}}
+
+probabilities from the hidden states? (1P)
+
+\hypertarget{c-use-the-transition-matrix-to-calculate-the-probability-that-the-following-sequence-was-sampled-from-a-cpg-island-and-the-probability-that-it-was-sampled-from-a-non-island-region.-tgacgacgaa.-compare-the-probabilities.}{%
+\subsection{c) Use the transition matrix to calculate the probability,
+that the following sequence was sampled from a CpG-island and the
+probability, that it was sampled from a non-island region. TGACGACGAA.
+Compare the
+probabilities.}\label{c-use-the-transition-matrix-to-calculate-the-probability-that-the-following-sequence-was-sampled-from-a-cpg-island-and-the-probability-that-it-was-sampled-from-a-non-island-region.-tgacgacgaa.-compare-the-probabilities.}}
+
+\end{document}
