@@ -428,7 +428,7 @@ result.}\label{c-describe-the-purpose-of-the-function-get-trans-prob.-choose-at-
 \begin{verbatim}
 ## x_out
 ##    49    50    51 
-## 0.042 0.475 0.483
+## 0.050 0.545 0.405
 \end{verbatim}
 
 \begin{Shaded}
@@ -441,7 +441,7 @@ result.}\label{c-describe-the-purpose-of-the-function-get-trans-prob.-choose-at-
 \begin{verbatim}
 ## x_out
 ##    39    40    41 
-## 0.049 0.431 0.520
+## 0.041 0.400 0.559
 \end{verbatim}
 
 \begin{Shaded}
@@ -453,7 +453,7 @@ result.}\label{c-describe-the-purpose-of-the-function-get-trans-prob.-choose-at-
 \begin{verbatim}
 ## x_out
 ##    59    60    61 
-## 0.052 0.590 0.358
+## 0.044 0.575 0.381
 \end{verbatim}
 
 \begin{Shaded}
@@ -465,99 +465,132 @@ result.}\label{c-describe-the-purpose-of-the-function-get-trans-prob.-choose-at-
 \begin{verbatim}
 ## x_out
 ##    79    80    81 
-## 0.050 0.792 0.158
+## 0.035 0.773 0.192
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Changing N}
-\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{200}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{80}\NormalTok{,}\DecValTok{20}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## x_out
 ##    49    50    51 
-## 0.057 0.344 0.599
+## 0.045 0.629 0.326
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{300}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{120}\NormalTok{,}\DecValTok{20}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## x_out
 ##    49    50    51 
-## 0.036 0.324 0.640
+## 0.056 0.404 0.540
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{400}\NormalTok{,}\DecValTok{20}\NormalTok{)}
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{160}\NormalTok{,}\DecValTok{20}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## x_out
 ##    49    50    51 
-## 0.049 0.328 0.623
+## 0.035 0.344 0.621
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Changing s}
-\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{30}\NormalTok{)}
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{15}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## x_out
 ##    49    50    51 
-## 0.032 0.494 0.474
+## 0.064 0.498 0.438
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{40}\NormalTok{)}
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{10}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## x_out
 ##    49    50    51 
-## 0.027 0.506 0.467
+## 0.071 0.518 0.411
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{50}\NormalTok{)}
+\FunctionTok{get\_trans\_prob}\NormalTok{(}\DecValTok{50}\NormalTok{,}\DecValTok{100}\NormalTok{,}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## x_out
 ##    49    50    51 
-## 0.019 0.495 0.486
+## 0.338 0.497 0.165
 \end{verbatim}
 
 The primary objective of the get\_trans\_prob function is to simulate a
 random walk process characterized by two sequential steps, both
-influenced by probabilistic transitions.
+influenced by probabilistic transitions. \newline When increasing x0 the
+probability of assigning y to 1 grows, because the probability for
+getting 1 from the vector c(0,1) is calculated by x/N. For the second
+step, the probability of getting a 1 assigned to the variable z is
+calculated by (s\emph{x)/(s}x+(N-1) and therefore for having a weight of
+e.g.~20 the probability of getting 1 grows with increasing x0. So the
+probabilities for both steps are higher for getting 1 with increasing x0
+and therefore the most probable new assignments for x are in the first
+step x = x - 1 and x = x + 1 in the second step, which can also be
+observed in the distribution of the three possible x values in the table
+as the number of middle values grows with increasing x0. \newline When
+increasing N the probability of assigning the variable y to 1 decreases,
+because of the formula x/N. Therefore it is more likely to assign y to 0
+and x not be subtracted by 1. In the second step the probability for
+assigning z to 1 is high due to the strong effect of the weight variable
+s (as discussed above). \newline When decreasing s the probability for
+assigning the variable z to 1 also decreases and therefore it is less
+likely to add 1 to x. This results in a higher frequency of the lowest
+of the three values.
 
 \hypertarget{d-bonus-how-can-this-process-be-applied-to-population-genetics-and-evolution}{%
 \subsection{d) Bonus: How can this process be applied to population
 genetics and
 evolution?}\label{d-bonus-how-can-this-process-be-applied-to-population-genetics-and-evolution}}
 
+The described process can be applied to population genetics and
+evolution by representing the initial allele frequency (x0) of a gene in
+a population (N). The parameter (s) influences transitions, akin to
+factors like selection, migration, or mutation rates. The number of
+iterations (it) simulates generations, with each step reflecting genetic
+events like drift or selection. This process allows to study how
+evolutionary forces shape allele frequencies over time, offering
+insights into genetic diversity and population dynamics.
+
 \hypertarget{task-3-cpg-islands-and-hmms}{%
 \section{Task 3 CpG islands and
 HMMs}\label{task-3-cpg-islands-and-hmms}}
 
 \hypertarget{a-compare-the-entries-of-cg-and-cg-and-interprete-the-result.}{%
-\subsection{a) Compare the entries of C−G− and C+G+ and interprete the
-result.}\label{a-compare-the-entries-of-cg-and-cg-and-interprete-the-result.}}
+\subsection{\texorpdfstring{a) Compare the entries of \texttt{C−G−} and
+\texttt{C+G+} and interprete the
+result.}{a) Compare the entries of C−G− and C+G+ and interprete the result.}}\label{a-compare-the-entries-of-cg-and-cg-and-interprete-the-result.}}
+
+The probability of getting from a C to a G in a non CpG island is 0.21\%
+while the likelihood of getting from a C to a G in a CpG island is
+21.91\% (factor 100), which makes sense given the fact that CpG islands
+are characterized by a high number CpG pairs.
 
 \hypertarget{b-how-does-the-emission-matrix-look-like-what-are-the-observables-and-the-emission}{%
 \subsection{b) How does the emission matrix look like? What are the
@@ -566,11 +599,76 @@ emission}\label{b-how-does-the-emission-matrix-look-like-what-are-the-observable
 
 probabilities from the hidden states? (1P)
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{8}\NormalTok{,}\AttributeTok{byrow=}\NormalTok{T)}
+\FunctionTok{rownames}\NormalTok{(B) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"A{-}"}\NormalTok{,}\StringTok{"C{-}"}\NormalTok{,}\StringTok{"G{-}"}\NormalTok{,}\StringTok{"T{-}"}\NormalTok{,}\StringTok{"A+"}\NormalTok{,}\StringTok{"C+"}\NormalTok{,}\StringTok{"G+"}\NormalTok{,}\StringTok{"T+"}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(B) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{,}\StringTok{"C"}\NormalTok{,}\StringTok{"G"}\NormalTok{,}\StringTok{"T"}\NormalTok{)}
+\NormalTok{B}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    A C G T
+## A- 1 0 0 0
+## C- 0 1 0 0
+## G- 0 0 1 0
+## T- 0 0 0 1
+## A+ 1 0 0 0
+## C+ 0 1 0 0
+## G+ 0 0 1 0
+## T+ 0 0 0 1
+\end{verbatim}
+
+The observables are the A, C, T, G bases without the island status. The
+emission probabilities from the hidden states has to be 100\% for a
+corresponding base regardless of its island status and therefore the
+other probabilities in the row have to be 0.
+
 \hypertarget{c-use-the-transition-matrix-to-calculate-the-probability-that-the-following-sequence-was-sampled-from-a-cpg-island-and-the-probability-that-it-was-sampled-from-a-non-island-region.-tgacgacgaa.-compare-the-probabilities.}{%
 \subsection{c) Use the transition matrix to calculate the probability,
 that the following sequence was sampled from a CpG-island and the
 probability, that it was sampled from a non-island region. TGACGACGAA.
 Compare the
 probabilities.}\label{c-use-the-transition-matrix-to-calculate-the-probability-that-the-following-sequence-was-sampled-from-a-cpg-island-and-the-probability-that-it-was-sampled-from-a-non-island-region.-tgacgacgaa.-compare-the-probabilities.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prob\_island }\OtherTok{\textless{}{-}} \FloatTok{0.2910} \SpecialCharTok{*} \FloatTok{0.2557} \SpecialCharTok{*} \FloatTok{0.1892} \SpecialCharTok{*}  \FloatTok{0.2191} \SpecialCharTok{*} \FloatTok{0.2557} \SpecialCharTok{*} \FloatTok{0.1892} \SpecialCharTok{*} \FloatTok{0.2191} \SpecialCharTok{*} \FloatTok{0.2557} \SpecialCharTok{*} \FloatTok{0.3190}
+\NormalTok{prob\_non\_island }\OtherTok{\textless{}{-}} \FloatTok{0.2158} \SpecialCharTok{*} \FloatTok{0.3654} \SpecialCharTok{*} \FloatTok{0.1629} \SpecialCharTok{*}  \FloatTok{0.0211} \SpecialCharTok{*} \FloatTok{0.3654} \SpecialCharTok{*}  \FloatTok{0.1629} \SpecialCharTok{*} \FloatTok{0.0211} \SpecialCharTok{*} \FloatTok{0.3654} \SpecialCharTok{*} \FloatTok{0.3921}
+
+\NormalTok{prob\_island }\SpecialCharTok{\textgreater{}}\NormalTok{ prob\_non\_island}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+The probability that the sequence is derived from a CpG-island is higher
+than the probability that it is derived from a non-island region.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Bonus: Use the R-script on Ilias to determine the most likely sequence
+  of hidden paths, that 'produce' the sequence which is also available
+  on Ilias. Run the whole script, have a look at the output and answer
+  the following question: What is the benefit of an HMM-approach
+  compared to the standard CG-content measurement? In general: In which
+  scenarios should you rather use the HMM than 'local' measurements?
+  \includegraphics{CompBio_Homework_SCHWALL_ELIAS_files/figure-latex/unnamed-chunk-12-1.pdf}
+  In general, the benefit of an HMM approach over a standard CG-content
+  measurement lies in its ability to capture dependencies between
+  consecutive nucleotides and model complex patterns in the sequence.
+  HMMs can provide more nuanced information about the underlying hidden
+  states (CpG island or non-island) based on observed sequences, making
+  them suitable for scenarios where local measurements (like CG-content
+  alone) may not capture the underlying structure effectively. HMMs are
+  particularly useful when there is a need to account for the context
+  and dependencies between adjacent elements in the sequence.
+\end{enumerate}
 
 \end{document}

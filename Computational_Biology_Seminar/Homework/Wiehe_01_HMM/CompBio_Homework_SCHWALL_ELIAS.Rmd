@@ -1,15 +1,16 @@
 ---
 title: "CompBio Homework SCHWALL ELIAS"
 author: "Elias Schwall"
-date: "`r Sys.Date()`"
+date: '`r Sys.Date()`'
 output:
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
-# Task 1 Pizza and Markov chains
+### Task 1 Pizza and Markov chains
 
-## a) Give the transition matrix to this process
+#### a) Give the transition matrix to this process
 ```{r}
 transition <- matrix(c(0.4,0.3,0.3,
                        0.0,0.1,0.9,
@@ -20,7 +21,7 @@ rownames(transition) <- names
 colnames(transition) <- names
 print(transition)
 ```
-## b) Calculate the costumer distribution after 1,2,10 and 20 month
+#### b) Calculate the costumer distribution after 1,2,10 and 20 month
 ```{r}
 time_frames <- c(1,2,10,20)
 
@@ -32,11 +33,11 @@ for (i in time_frames){
     cat("Customer distrinbution after", i, "months",customer_distribution,"\n", sep = " ")
 }
 ```
-## c) Interpret the result, using the term ’stationary distribution’
+#### c) Interpret the result, using the term ’stationary distribution’
 After 10 months we can see that the customer distribution is basically not changing anymore (rounded). This is called the stationary distribution. The stationary distribution is the long term distribution of the customer distribution. This implies that following a specific duration, the customer distribution for each pizza store will reach a stable state, and the market shares will remain relatively consistent over time. In principle the stantionary distribution is achieved earlier than after 10 months, however in the observed time frames we see behavior after 10 months, when comparing it to 20.
 
-# Task 2 Asymmetric random walk - an urn model 
-## a) Define the procedure draw and replace in the R-script, which updates the balls in the urn. For weighted sampling, use sample with the option prob= .... The vector can be defined with the weights 1 and s (1 where balls=0 and s where balls=1)
+### Task 2 Asymmetric random walk - an urn model 
+#### a) Define the procedure draw and replace in the R-script, which updates the balls in the urn. For weighted sampling, use sample with the option prob= .... The vector can be defined with the weights 1 and s (1 where balls=0 and s where balls=1)
 ```{r}
 #Urn-model#
 N <- 100 #number of balls
@@ -65,7 +66,7 @@ draw_and_replace <- function(balls, s=2){
 balls <- draw_and_replace(balls, s=2)  
 print(balls)
 ```
-## b) Describe the purpose of the function draw trajectory. Choose at least 3 different parameter combinations (varying s, N, run time etc.) and attach the plots to the pdf. Give a short interpretation of the effects of the parameters.
+#### b) Describe the purpose of the function draw trajectory. Choose at least 3 different parameter combinations (varying s, N, run time etc.) and attach the plots to the pdf. Give a short interpretation of the effects of the parameters.
 
 The draw_trajectory function is used to simulate the urn model and plot the trajectory of the number of balls in the urn over time. The function takes the following parameters: repl is the number of simulations to be run, run_time is the number of time steps to be simulated, s is the weight of the white balls, and N is the number of balls in the urn. The function is used to investigate the effect of the parameters on the urn model. The following plots show the effect of varying s, N, and repl on the urn model.
 ```{r}
@@ -87,7 +88,7 @@ draw_trajectory <- function(repl=20, run_time=1e3, s=2, N=100){
 }
 ```
 
-### Plots for varying s
+##### Plots for varying s
 ```{r}
 # Changing s 
 draw_trajectory(repl=20, run_time=1e3, s=1, N=100)
@@ -97,7 +98,7 @@ draw_trajectory(repl=20, run_time=1e3, s=10, N=100)
 When changing the weight of the white balls, we can see that the number of white balls in the urn increases faster when the weight is higher. This is because the probability of drawing a white ball is higher when the weight is higher. 
 \newpage
 
-### Plots for varying repl
+##### Plots for varying repl
 ```{r}
 # Changing repl
 draw_trajectory(repl=20, run_time=1e3, s=2, N=100)
@@ -107,7 +108,7 @@ draw_trajectory(repl=50, run_time=1e3, s=2, N=100)
 When changing the number of simulations, we can see that there are more trajectories. This is because the number of simulations is the number of times the urn model is simulated. Therefore, it more likely that some trajectories will approach the maximum number of white balls in the urn by chance.
 \newpage
 
-### Plots for varying N
+##### Plots for varying N
 ```{r}
 # Changing N
 draw_trajectory(repl=20, run_time=1e3, s=2, N=100)
@@ -117,7 +118,7 @@ draw_trajectory(repl=20, run_time=1e3, s=2, N=1000)
 When changing the number of balls in the urn, we can see that it is more likely to pick a black ball, because the ratio of white to black balls changes (we still start only with one white ball). Therefore, it is more likely that the trajectory will approach the minimum number of white balls (0) in the urn by chance. 
 \newpage
 
-### Plots for varying run_time
+##### Plots for varying run_time
 ```{r}
 # Changing run_time
 draw_trajectory(repl=20, run_time=1e2, s=2, N=100)
@@ -126,7 +127,7 @@ draw_trajectory(repl=20, run_time=1e4, s=2, N=100)
 ```
 When changing the number of time steps, we can see that reaching a minimum or maximum number of white balls in the urn becomes less likely, due to less drawing and replacing steps. 
 
-## c) Describe the purpose of the function get trans prob. Choose at least 10 different parameter combinations (varying x0, s, N). Give a short interpretation of your result.
+#### c) Describe the purpose of the function get trans prob. Choose at least 10 different parameter combinations (varying x0, s, N). Give a short interpretation of your result.
 ```{r}
 get_trans_prob <- function(x0,N,s,it=1000){
   x_out <- rep(0,it)
@@ -164,20 +165,20 @@ get_trans_prob(50,100,10)
 get_trans_prob(50,100,1)
 ```
 The primary objective of the get_trans_prob function is to simulate a random walk process characterized by two sequential steps, both influenced by probabilistic transitions. \newline
-When increasing `x0` the probability of assigning `y` to 1 grows, because the probability for getting 1 from the vector `c(0,1)` is calculated by `x/N`. For the second step, the probability of getting a 1 assigned to the variable `z` is calculated by `(s*x)/(s*x+(N-1)` and therefore for having a weight of e.g. 20 the probability of getting 1 grows with increasing `x0`. So the probabilities for both steps are higher for getting 1 with increasing `x0` and therefore the most probable new assignments for `x` are in the first step `x = x - 1` and `x = x + 1` in the second step, which can also be observed in the distribution of the three possible x values in the table as the number of middle values grows with increasing `x0`. \newline
-When increasing `N` the probability of assigning the variable `y` to 1 decreases, because of the formula `x/N`. Therefore it is more likely to assign `y` to 0 and `x` not be subtracted by 1. In the second step the probability for assigning `z` to 1 is high due to the strong effect of the weight variable `s` (as discussed above). \newline
-When decreasing `s` the probability for assigning the variable `z` to 1 also decreases and therefore it is less likely to add 1 to `x`. This results in a higher frequency of the lowest of the three values. 
+When increasing x0 the probability of assigning y to 1 grows, because the probability for getting 1 from the vector c(0,1) is calculated by x/N. For the second step, the probability of getting a 1 assigned to the variable z is calculated by (s*x)/(s*x+(N-1) and therefore for having a weight of e.g. 20 the probability of getting 1 grows with increasing x0. So the probabilities for both steps are higher for getting 1 with increasing x0 and therefore the most probable new assignments for x are in the first step x = x - 1 and x = x + 1 in the second step, which can also be observed in the distribution of the three possible x values in the table as the number of middle values grows with increasing x0. \newline
+When increasing N the probability of assigning the variable y to 1 decreases, because of the formula x/N. Therefore it is more likely to assign y to 0 and x not be subtracted by 1. In the second step the probability for assigning z to 1 is high due to the strong effect of the weight variable s (as discussed above). \newline
+When decreasing s the probability for assigning the variable z to 1 also decreases and therefore it is less likely to add 1 to x. This results in a higher frequency of the lowest of the three values. 
 
 
-## d) Bonus: How can this process be applied to population genetics and evolution?
-The described process can be applied to population genetics and evolution by representing the initial allele frequency (`x0`) of a gene in a population (`N`). The parameter (`s`) influences transitions, akin to factors like selection, migration, or mutation rates. The number of iterations (`it`) simulates generations, with each step reflecting genetic events like drift or selection. This process allows to study how evolutionary forces shape allele frequencies over time, offering insights into genetic diversity and population dynamics.
+#### d) Bonus: How can this process be applied to population genetics and evolution?
+The described process can be applied to population genetics and evolution by representing the initial allele frequency (x0) of a gene in a population (N). The parameter (s) influences transitions, akin to factors like selection, migration, or mutation rates. The number of iterations (it) simulates generations, with each step reflecting genetic events like drift or selection. This process allows to study how evolutionary forces shape allele frequencies over time, offering insights into genetic diversity and population dynamics.
 
 
-# Task 3 CpG islands and HMMs
-## a) Compare the entries of C−G− and C+G+ and interprete the result.
-The probability of getting from a C to a G in a non CpG-island is 0.21% while the likelihood of getting from a C to a G in a CpG island is 21.91% (factor 100), which makes sense given the fact that CpG-islands are characterized by a high number CpG-pairs.   
+### Task 3 CpG islands and HMMs
+#### a) Compare the entries of `C−G−` and `C+G+` and interprete the result.
+The probability of getting from a C to a G in a non CpG island is 0.21% while the likelihood of getting from a C to a G in a CpG island is 21.91% (factor 100), which makes sense given the fact that CpG islands are characterized by a high number CpG pairs.   
 
-## b) How does the emission matrix look like? What are the observables and the emission
+#### b) How does the emission matrix look like? What are the observables and the emission
 probabilities from the hidden states? (1P)
 ```{r}
 B <- matrix(c(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1),nrow=8,byrow=T)
@@ -187,13 +188,125 @@ B
 ```
 The observables are the A, C, T, G bases without the island status. The emission probabilities from the hidden states has to be 100% for a corresponding base regardless of its island status and therefore the other probabilities in the row have to be 0.  
 
-## c) Use the transition matrix to calculate the probability, that the following sequence was sampled from a CpG-island and the probability, that it was sampled from a non-island region. TGACGACGAA. Compare the probabilities.
+#### c) Use the transition matrix to calculate the probability, that the following sequence was sampled from a CpG-island and the probability, that it was sampled from a non-island region. TGACGACGAA. Compare the probabilities.
 ```{r}
 prob_island <- 0.2910 * 0.2557 * 0.1892 *  0.2191 * 0.2557 * 0.1892 * 0.2191 * 0.2557 * 0.3190
 prob_non_island <- 0.2158 * 0.3654 * 0.1629 *  0.0211 * 0.3654 *  0.1629 * 0.0211 * 0.3654 * 0.3921
 
 prob_island > prob_non_island
 ```
-The probability that the sequence is derived 
+The probability that the sequence is derived from a CpG-island is higher than the probability that it is derived from a non-island region. 
 
-d) Bonus: Use the R-script on Ilias to determine the most likely sequence of hidden paths, that ’produce’ the sequence which is also available on Ilias. Run the whole script, have a look at the output and answer the following question: What is the benefit of an HMM-approach compared to the standard CG-content measurement? In general: In which scenarios should you rather use the HMM than ’local’ measurements?
+#### d) Bonus: Use the R-script on Ilias to determine the most likely sequence of hidden paths, that ’produce’ the sequence which is also available on Ilias. Run the whole script, have a look at the output and answer the following question: What is the benefit of an HMM-approach compared to the standard CG-content measurement? In general: In which scenarios should you rather use the HMM than ’local’ measurements?
+```{r echo=FALSE}
+##### Viterbi Algorithm and CpG-islands #####
+#Download the file my_sequence and replace the path here, where you saved it
+sequence_file_path <- "/Users/elias/Documents/computational_biology/ComputationalBiologyMaster/Computational_Biology_Seminar/Homework/Wiehe_01_HMM/07_my-sequence.txt"
+
+obs_seq <- scan(sequence_file_path,what=character())
+obs_seq <- unlist(strsplit(obs_seq,split=""))
+
+# Viterbi algorithm #
+Viterbi <- function(S,O,pi,A,B,obs_seq){
+  n <- length(S)
+  m <- length(O)
+  t <- length(obs_seq)
+  my_beta <- matrix(0,nrow=n,ncol=t)
+  point <- matrix(0,nrow=n,ncol = t)
+  for (i in 1:n) {
+    my_beta[i,1] <- pi[i] * B[i,which(O == obs_seq[1])]
+  }
+  
+  for (tm in 2:t) {
+    for (i in 1:n){
+      my_beta[i,tm] <- max(my_beta[1:n,tm-1]*A[1:n,i]*B[i,which(O==obs_seq[tm])]) 
+      point[i,tm] <- which.max(my_beta[1:n,tm-1]*A[1:n,i]*B[i,which(O==obs_seq[tm])])
+    }
+    
+    if(min(my_beta[my_beta[1:n,tm]>0,tm]) < 1e-5){
+      my_beta[1:n,tm] <- 1e5*my_beta[1:n,tm]
+    }
+  }
+  
+  backtrack <- rep(0,t)
+  backtrack[t] <- which.max(my_beta[1:n,tm])
+  
+  for (i in rev(2:t)) {
+    backtrack[i-1] <- point[backtrack[i],i]
+    
+  }
+  return(backtrack)
+}
+
+# GC-content #
+GC_content <- function(obs_seq){
+  n <- length(obs_seq)
+  out <- rep(0,n)
+  k <- 0
+  for (i in 2:n) {
+    if(identical(obs_seq[(i-1):i],c("G","C"))){
+      k <- k + 17
+    }
+    else{
+      k <- k-1
+    }
+    k <- max(0,k)
+    out[i] <- k
+    
+  }
+  return(out)
+}
+
+
+# Define the HMM model #
+
+S <- c("A+","C+","G+","T+","A","C","G","T")
+O <- c("A","C","G","T")
+
+A <- matrix(c(
+  0.3190, 0.1892, 0.2566, 0.2155, 0.0091, 0.0022, 0.0036, 0.0047, 
+  0.2920, 0.2164, 0.2191, 0.2530, 0.0075, 0.0045, 0.0034, 0.0041,
+  0.2557, 0.3016, 0.2458, 0.1893, 0.0025, 0.0002, 0.0015, 0.0035,
+  0.1892, 0.2230, 0.2910, 0.2857, 0.0021, 0.0037, 0.0021, 0.0033,
+  0.0010, 0.0004, 0.0009, 0.0001, 0.3921, 0.1629, 0.1857, 0.2570,
+  0.0016, 0.0011, 0.0004, 0.0012, 0.4346, 0.2295, 0.0211, 0.3105,
+  0.0009, 0.0016, 0.0022, 0.0004, 0.3654, 0.1645, 0.2177, 0.2472,
+  0.0007, 0.0010, 0.0015, 0.0006, 0.2713, 0.1942, 0.2158, 0.3149
+  ),
+  nrow=8,byrow = T)
+
+
+B <- matrix(c(
+  1,0,0,0,
+  0,1,0,0,
+  0,0,1,0,
+  0,0,0,1,
+  1,0,0,0,
+  0,1,0,0,
+  0,0,1,0,
+  0,0,0,1
+),nrow=8,byrow=T)
+
+pi <- rep(1/8,8)
+
+rownames(A) <- S
+colnames(A) <- S
+rownames(B) <- S
+colnames(B) <- O
+
+
+
+# Run the Viterbi Algorithm
+most_likely_sequence <- Viterbi(S,O,pi,A,B,obs_seq)
+
+# Calculate the GC-content
+GC <- GC_content(obs_seq)
+
+
+# Plot the result
+par(mfrow=c(2,1))
+plot(1:length(most_likely_sequence),1*(most_likely_sequence<4)-1*(most_likely_sequence>=4),type="l",ylab="Island",xlab="position")
+plot(GC,type="l")
+par(mfrow=c(1,1))
+```
+In general, the benefit of an HMM approach over a standard CG-content measurement lies in its ability to capture dependencies between consecutive nucleotides and model complex patterns in the sequence. HMMs can provide more nuanced information about the underlying hidden states (CpG island or non-island) based on observed sequences, making them suitable for scenarios where local measurements (like CG-content alone) may not capture the underlying structure effectively. HMMs are particularly useful when there is a need to account for the context and dependencies between adjacent elements in the sequence.
